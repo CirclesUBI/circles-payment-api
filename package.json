@@ -16,6 +16,7 @@
   },
   "scripts": {
     "prepare": "husky install",
+    "start": "node src",
     "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
