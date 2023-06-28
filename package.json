@@ -16,12 +16,14 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "start": "node src",
+    "start": "fastify start src",
     "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "fastify": "4.18.0"
+    "@gelatonetwork/relay-sdk": "4.0.0",
+    "@safe-global/protocol-kit": "^1.0.1",
+    "fastify-cli": "5.7.1"
   },
   "devDependencies": {
     "eslint": "8.43.0",

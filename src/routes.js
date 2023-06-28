@@ -1,5 +1,6 @@
-module.exports = async (fastify, options) => {
-  fastify.get('/', async (request, reply) => {
-    return { hello: 'world' };
-  });
+const { safes, transactions } = require('./features');
+
+module.exports = async (fastify, _) => {
+  fastify.post('/transactions', transactions.fundTransaction);
+  fastify.post('/safes', safes.fundSafeDeploy);
 };
