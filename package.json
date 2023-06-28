@@ -23,6 +23,7 @@
   "dependencies": {
     "@gelatonetwork/relay-sdk": "4.0.0",
     "@safe-global/protocol-kit": "^1.0.1",
+    "@safe-global/safe-core-sdk-types": "2.0.0",
     "fastify-cli": "5.7.1"
   },
   "devDependencies": {
