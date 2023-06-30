@@ -18,10 +18,10 @@ cp .env.example .env
 
 Required env variables to run:
 
-- FUNDER_ACCOUNT_PRIVATE_KEY
-- GELATO_RELAY_API_KEY
-- RPC_URL
-- CHAIN_ID
+- `FUNDER_ACCOUNT_PRIVATE_KEY`
+- `GELATO_RELAY_API_KEY`
+- `RPC_URL`
+- `CHAIN_ID`
 
 ### Run
 
