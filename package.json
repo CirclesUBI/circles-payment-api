@@ -18,6 +18,7 @@
     "prepare": "husky install",
     "start": "fastify start src",
     "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
