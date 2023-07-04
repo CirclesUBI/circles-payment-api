@@ -1,22 +1,22 @@
 const { ethers } = require('ethers');
 const { EthersAdapter, SafeFactory } = require('@safe-global/protocol-kit');
 
-const { funderAccount, rpcUrl } = require('../config');
+const { contractNetworks, funderAccount, rpcUrl } = require('../config');
 
-const signer = new ethers.Wallet(
-  funderAccount,
-  new ethers.providers.JsonRpcProvider(rpcUrl),
-);
 const ethAdapter = new EthersAdapter({
   ethers,
-  signerOrProvider: signer,
+  signerOrProvider: new ethers.Wallet(
+    funderAccount,
+    new ethers.providers.JsonRpcProvider(rpcUrl),
+  ),
 });
 let safeFactory;
+
 const getSafeFactory = async () =>
   safeFactory ||
   SafeFactory.create({
     ethAdapter,
-    isL1SafeMasterCopy: true,
+    contractNetworks,
   }).then((_safeFactory) => {
     safeFactory = _safeFactory;
 
