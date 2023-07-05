@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: circles-payment-api
+  title: Circles Transactions Payment API
   version: 0.0.0
 components:
   schemas:
