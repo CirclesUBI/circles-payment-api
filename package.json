@@ -1,6 +1,6 @@
 {
   "name": "circles-payment-api",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Proxy API for funding transactions with Gelato 1Balance and deploying safes with a funder account",
   "main": "src/index.js",
   "license": "AGPL-3.0",
