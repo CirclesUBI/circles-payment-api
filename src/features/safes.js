@@ -1,14 +1,12 @@
 const { ethers } = require('ethers');
 const { EthersAdapter, SafeFactory } = require('@safe-global/protocol-kit');
 
-const { contractNetworks, funderAccount, rpcUrl } = require('../config');
+const { contractNetworks } = require('../config');
+const { funder } = require('../utils');
 
 const ethAdapter = new EthersAdapter({
   ethers,
-  signerOrProvider: new ethers.Wallet(
-    funderAccount,
-    new ethers.providers.JsonRpcProvider(rpcUrl),
-  ),
+  signerOrProvider: funder,
 });
 let safeFactory;
 
