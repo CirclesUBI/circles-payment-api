@@ -19,7 +19,7 @@
     "start": "fastify start src",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cross-env FASTIFY_LOG_LEVEL=fatal jest --runInBand"
   },
   "dependencies": {
     "@fastify/cors": "8.3.0",
@@ -31,6 +31,7 @@
     "fastify-cli": "5.7.1"
   },
   "devDependencies": {
+    "cross-env": "7.0.3",
     "eslint": "8.43.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-prettier": "4.2.1",
