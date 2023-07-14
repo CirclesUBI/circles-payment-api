@@ -1,0 +1,64 @@
+name: Run tests
+
+on: [push]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+      DOCKER_COMPOSE: docker-compose -f docker-compose.yml -f docker-compose.frontend.yml -p circles
+
+    steps:
+      - name: Add hosts to /etc/hosts
+        run: |
+          sudo echo "127.0.1.1 api.circles.local" | sudo tee -a /etc/hosts
+          sudo echo "127.0.1.1 graph.circles.local" | sudo tee -a /etc/hosts
+          sudo echo "127.0.1.1 relay.circles.local" | sudo tee -a /etc/hosts
+
+      - name: Checkout repository code
+        uses: actions/checkout@v3
+        with:
+          path: service
+
+      - name: Set env file
+        working-directory: service
+        run: cp .env.example .env
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: 'service/.nvmrc'
+          cache: 'npm'
+          cache-dependency-path: service/package-lock.json
+
+      - name: Checkout circles-docker repository
+        uses: actions/checkout@v3
+        with:
+          repository: CirclesUBI/circles-docker.git
+          ref: main
+          path: circles-docker
+
+      - name: Set circles-docker env file
+        working-directory: circles-docker
+        run: cp .env.example .env
+
+      - name: Container setup via docker-compose without pathfinder
+        working-directory: circles-docker
+        run: docker compose -f docker-compose.yml -f docker-compose.relayer-pull.yml -f docker-compose.api-pull.yml -p circles  up --detach --remove-orphans --build
+
+      - name: Download and migrate contracts
+        working-directory: circles-docker
+        run: ./scripts/migrate-contracts.sh
+
+      - name: Try starting failed services
+        working-directory: circles-docker
+        run: docker compose -f docker-compose.yml -f docker-compose.relayer-pull.yml -f docker-compose.api-pull.yml -p circles  up --detach --remove-orphans --build
+
+      - name: Install dependencies
+        working-directory: service
+        run: npm ci
+
+      - name: Run tests
+        working-directory: service
+        run: npm run test
