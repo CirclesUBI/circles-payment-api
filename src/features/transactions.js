@@ -12,10 +12,13 @@ const fundTransaction = async ({ body }, _) => {
     case 'production':
       result = relay.sponsoredCall({ ...body, chainId }, gelatoApiKey);
       break;
-    default:
+    default: {
+      const { target: to, ...rest } = body;
+
       result = funder
-        .sendTransaction({ to: body.target, data: body.data })
+        .sendTransaction({ ...rest, to })
         .then((data) => ({ taskId: '0x', data }));
+    }
   }
 
   return result;

@@ -22,10 +22,6 @@ describe('Safes features:', () => {
               threshold: 1,
             },
             saltNonce: new Date().getTime(),
-            options: {
-              gasLimit: '10000000',
-              gasPrice: '1000000',
-            },
           },
         })
         .then((response) => {
