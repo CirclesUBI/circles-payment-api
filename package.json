@@ -26,8 +26,8 @@
     "@fastify/swagger": "8.6.0",
     "@fastify/swagger-ui": "1.9.0",
     "@gelatonetwork/relay-sdk": "4.0.0",
-    "@safe-global/protocol-kit": "^1.0.1",
-    "@safe-global/safe-core-sdk-types": "2.0.0",
+    "@safe-global/protocol-kit": "^1.2.0",
+    "@safe-global/safe-core-sdk-types": "^2.2.0",
     "fastify-cli": "5.7.1"
   },
   "devDependencies": {
