@@ -43,6 +43,12 @@ npm start
 
 This command starts a local development server and serves a Swagger UI at the `/docs` endpoint for documentation and example usage.
 
+### Test
+
+```bash
+npm test
+```
+
 ### Using Gelato Relay
 
 By default the service will use a local strategy for funding transactions with a funder account unless the `NODE_ENV` environment variable value is set to `production`, then Gelato Relay will be used instead. This is especially important for local development with Ganache network because of Gelato not supporting it.
