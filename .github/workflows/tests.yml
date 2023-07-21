@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-      DOCKER_COMPOSE: docker-compose -f docker-compose.yml -f docker-compose.frontend.yml -p circles
+      DOCKER_COMPOSE: docker-compose -f docker-compose.yml -p circles
 
     steps:
       - name: Add hosts to /etc/hosts
