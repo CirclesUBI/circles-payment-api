@@ -19,7 +19,7 @@
     "start": "fastify start src",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "test": "cross-env FASTIFY_LOG_LEVEL=fatal jest --runInBand"
+    "test": "cross-env FASTIFY_LOG_LEVEL=fatal jest"
   },
   "dependencies": {
     "@fastify/cors": "8.3.0",
