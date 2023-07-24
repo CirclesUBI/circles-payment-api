@@ -6,7 +6,11 @@ WORKDIR /usr/src/app
 # set default node env
 ARG NODE_ENV=development
 
-# change NODE_ENV for production 
+# Fastify configuration
+ENV FASTIFY_ADDRESS=0.0.0.0
+ENV FASTIFY_PORT=3002
+
+# change NODE_ENV for production
 ENV NODE_ENV=${NODE_ENV}
 # Install dependencies
 RUN apt-get update \
@@ -16,8 +20,7 @@ RUN apt-get update \
 COPY . .
 
 # Install NodeJS dependencies
-RUN npm ci --no-audit 
+RUN npm ci --no-audit
 
-
-# Run application 
+# Run application
 CMD ["dumb-init", "npm", "start"]
