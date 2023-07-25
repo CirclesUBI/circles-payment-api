@@ -12,8 +12,16 @@ npm install
 
 ### Set up .env file
 
+For development environment:
+
 ```bash
 cp .env.example .env
+```
+
+For staging environment:
+
+```bash
+cp .env.staging.example .env
 ```
 
 Required env variables to run:
@@ -45,10 +53,18 @@ This command starts a local development server and serves a Swagger UI at the `/
 
 ### Test
 
+For development environment:
+
 ```bash
 npm test
 ```
 
+For staging environment:
+
+```bash
+npm run test:staging
+```
+
 ### Using Gelato Relay
 
-By default the service will use a local strategy for funding transactions with a funder account unless the `NODE_ENV` environment variable value is set to `production`, then Gelato Relay will be used instead. This is especially important for local development with Ganache network because of Gelato not supporting it.
+By default the service will use a common wallet for funding transactions unless the `NODE_ENV` environment variable value is set to `production` explicitly, then the Gelato Relay will be used instead. This is especially important for local development with Ganache network because of Gelato not supporting it.

@@ -24,7 +24,7 @@ describe('Transactions features:', () => {
         })
         .then((response) => {
           expect(response.statusCode).toBe(200);
-          expect(response.json().taskId).toBe('0x');
+          expect(typeof response.json().taskId).toBe('string');
         }));
 
     it('Should fail on incorrect transaction', () =>
