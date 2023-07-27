@@ -18,18 +18,21 @@
     "prepare": "husky install",
     "start": "fastify start src",
     "lint": "eslint src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint:fix": "eslint src --fix",
+    "test": "cross-env FASTIFY_LOG_LEVEL=fatal jest",
+    "test:staging": "cross-env FASTIFY_LOG_LEVEL=fatal NODE_ENV=production jest"
   },
   "dependencies": {
     "@fastify/cors": "8.3.0",
     "@fastify/swagger": "8.6.0",
     "@fastify/swagger-ui": "1.9.0",
     "@gelatonetwork/relay-sdk": "4.0.0",
-    "@safe-global/protocol-kit": "^1.0.1",
-    "@safe-global/safe-core-sdk-types": "2.0.0",
+    "@safe-global/protocol-kit": "^1.2.0",
+    "@safe-global/safe-core-sdk-types": "^2.2.0",
     "fastify-cli": "5.7.1"
   },
   "devDependencies": {
+    "cross-env": "7.0.3",
     "eslint": "8.43.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-prettier": "4.2.1",
