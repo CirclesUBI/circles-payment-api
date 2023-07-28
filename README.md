@@ -24,13 +24,19 @@ For staging environment:
 cp .env.staging.example .env
 ```
 
-Required env variables to run:
+Required env variables to run in Ganache:
 
 ```
-FUNDER_ACCOUNT_PRIVATE_KEY=
-GELATO_RELAY_API_KEY=
-RPC_URL=
-CHAIN_ID=
+NODE_ENV=development
+FUNDER_ACCOUNT_PRIVATE_KEY=<funder-private-key>
+```
+
+Required env variables to run in real networks:
+
+```
+NODE_ENV=production
+GELATO_RELAY_API_KEY=<gelato-api-key>
+CHAIN_ID=<chain-id>
 ```
 
 ### Run
