@@ -1,29 +1,29 @@
 const { GelatoRelay } = require('@gelatonetwork/relay-sdk');
 
-const { chainId, gelatoApiKey, env } = require('../config');
+const { chainId, gelatoApiKey } = require('../config');
 const { funder } = require('../utils');
 
 const relay = new GelatoRelay();
 
-const fundTransaction = async ({ body }, _) => {
-  let result;
-
-  switch (env) {
-    case 'production':
-      result = relay.sponsoredCall({ ...body, chainId }, gelatoApiKey);
-      break;
-    default: {
-      const { target: to, ...rest } = body;
-
-      result = funder
-        .sendTransaction({ ...rest, to })
-        .then((data) => ({ taskId: '0x', data }));
-    }
-  }
-
-  return result;
-};
+const fundLocalTransaction = (
+  { body: { target: to, ...rest }, pendingRequests },
+  _,
+) =>
+  funder
+    .getTransactionCount()
+    .then((nonce) =>
+      funder.sendTransaction({
+        ...rest,
+        to,
+        nonce: nonce + pendingRequests + 1,
+      }),
+    )
+    .then((response) => response.wait())
+    .then((receipt) => ({ taskId: '0x', receipt }));
+const fundGelatoTransaction = ({ body }, _) =>
+  relay.sponsoredCall({ ...body, chainId }, gelatoApiKey);
 
 module.exports = {
-  fundTransaction,
+  fundLocalTransaction,
+  fundGelatoTransaction,
 };
