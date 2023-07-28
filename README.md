@@ -33,16 +33,6 @@ RPC_URL=
 CHAIN_ID=
 ```
 
-In some networks, as development, you must specify the deployed Safe contract addresses with the following env vars:
-
-```
-SAFE_MASTER_COPY_ADDRESS=
-SAFE_PROXY_FACTORY_ADDRESS=
-FALLBACK_HANDLER_ADDRESS=
-MULTI_SENT_ADDRESS=
-MULTI_SEND_CALL_ONLY_ADDRESS=
-```
-
 ### Run
 
 ```bash
