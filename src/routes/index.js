@@ -1,7 +1,5 @@
-const { transactions } = require('../features');
-const safes = require('./safes');
+const transactions = require('./transactions');
 
 module.exports = async (fastify, _) => {
-  fastify.post('/transactions', transactions.fundTransaction);
-  fastify.register(safes);
+  fastify.register(transactions);
 };
