@@ -4,9 +4,8 @@ const { chainId, gelatoApiKey } = require('../config');
 const { funder } = require('../utils');
 
 const relay = new GelatoRelay();
-
 const fundLocalTransaction = (
-  { body: { target: to, ...rest }, pendingRequests },
+  { body: { target: to, ...rest }, pendingRequests = 0 },
   _,
 ) =>
   funder
@@ -15,10 +14,10 @@ const fundLocalTransaction = (
       funder.sendTransaction({
         ...rest,
         to,
-        nonce: nonce + pendingRequests + 1,
+        nonce: nonce + pendingRequests,
       }),
     )
-    .then((response) => response.wait())
+    .then((tx) => tx.wait())
     .then((receipt) => ({ taskId: '0x', receipt }));
 const fundGelatoTransaction = ({ body }, _) =>
   relay.sponsoredCall({ ...body, chainId }, gelatoApiKey);
