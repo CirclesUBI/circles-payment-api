@@ -15,11 +15,10 @@ module.exports = async (fastify, _) => {
           {
             onRequest: (request, reply, done) => {
               request.pendingRequests = pendingRequests;
+              request.onFinish = () => {
+                pendingRequests -= 1;
+              };
               pendingRequests += 1;
-              done();
-            },
-            onResponse: (request, reply, done) => {
-              pendingRequests -= 1;
               done();
             },
           },
